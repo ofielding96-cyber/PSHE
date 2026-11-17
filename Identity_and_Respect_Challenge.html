@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Identity &amp; Respect Challenge – Year 10 PSHE</title>
+<style>
+/* ============ THEME ============ */
+:root{
+  --bg:#0a1228; --bg2:#101b38; --card:#16233f; --card2:#1d2e52;
+  --text:#f2f6fc; --muted:#b9c5dc; --line:#3a4f7a;
+  --teal:#2dd4bf; --teal-d:#06242b; --violet:#a78bfa; --violet-d:#1b1240;
+  --good:#4ade80; --warn:#fbbf24; --bad:#fb923c; --focus:#fde047;
+  --shadow:0 8px 24px rgba(0,0,0,.35); --r:18px;
+}
+[data-theme="light"]{
+  --bg:#fbf7ec; --bg2:#f1ebd6; --card:#fffdf6; --card2:#f6f0dd;
+  --text:#1a2240; --muted:#454f6d; --line:#b9ae8c;
+  --teal:#0b7a70; --teal-d:#ffffff; --violet:#5b3fd1; --violet-d:#ffffff;
+  --good:#166534; --warn:#8a4b08; --bad:#9a3412; --focus:#1d4ed8;
+  --shadow:0 6px 18px rgba(60,50,20,.15);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; min-height:100vh; color:var(--text);
+  font-family:Verdana,Tahoma,"Segoe UI",Arial,sans-serif;
+  font-size:17px; line-height:1.7; text-align:left;
+  background:var(--bg);
+  background-image:radial-gradient(1100px 500px at 85% -10%,rgba(167,139,250,.16),transparent 60%),radial-gradient(900px 500px at -10% 10%,rgba(45,212,191,.12),transparent 60%);
+  background-attachment:fixed;
+}
+[data-theme="light"] body{background-image:none}
+body.reading{font-size:20px; line-height:2; letter-spacing:.04em; word-spacing:.14em}
+body.reading .opt,body.reading .btn{letter-spacing:.03em}
+h1,h2,h3{line-height:1.3; margin:0 0 .5em}
+h1{font-size:clamp(1.7rem,4vw,2.4rem)}
+h2{font-size:1.35rem}
+h3{font-size:1.15rem}
+p{margin:0 0 1em; max-width:70ch}
+ul,ol{padding-left:1.3em; margin:0 0 1em}
+li{margin-bottom:.4em}
+a{color:var(--teal)}
+:focus-visible{outline:3px solid var(--focus); outline-offset:3px; border-radius:6px}
+[tabindex="-1"]:focus{outline:none}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:8px;top:-60px;background:var(--focus);color:#000;padding:10px 16px;border-radius:8px;z-index:200;font-weight:700}
+.skip:focus{top:8px}
+.muted{color:var(--muted)}
+.small{font-size:.9rem}
+[hidden]{display:none!important}
+
+/* ============ LAYOUT ============ */
+.top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:12px clamp(14px,3vw,32px);border-bottom:1px solid var(--line);background:rgba(10,18,40,.6);backdrop-filter:blur(6px);position:sticky;top:0;z-index:50}
+[data-theme="light"] .top{background:rgba(251,247,236,.92)}
+.brand{font-weight:800;letter-spacing:.04em;font-size:.95rem;display:flex;align-items:center;gap:10px;margin-right:auto}
+.brand .dot{width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--violet))}
+.tools{display:flex;flex-wrap:wrap;gap:8px}
+main{max-width:1040px;margin:0 auto;padding:clamp(16px,3vw,36px) clamp(14px,3vw,32px) 60px;outline:none}
+footer{max-width:1040px;margin:0 auto;padding:0 clamp(14px,3vw,32px) 40px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.enter>*{animation:rise .45s ease both}
+.enter>*:nth-child(2){animation-delay:.05s}.enter>*:nth-child(3){animation-delay:.1s}.enter>*:nth-child(4){animation-delay:.15s}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes grow{from{width:0}}
+@keyframes pop{0%{transform:scale(.6);opacity:0}60%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(45,212,191,.55)}100%{box-shadow:0 0 0 22px rgba(45,212,191,0)}}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+
+/* ============ COMPONENTS ============ */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(16px,2.5vw,26px);box-shadow:var(--shadow);margin-bottom:18px}
+.card.soft{box-shadow:none}
+.btn{min-height:48px;padding:11px 22px;border-radius:14px;border:2px solid transparent;font:inherit;font-weight:700;cursor:pointer;transition:transform .15s,background .15s,border-color .15s;display:inline-flex;align-items:center;justify-content:center;gap:8px;color:var(--text);background:transparent;text-align:center}
+.btn:hover:not(:disabled){transform:translateY(-2px)}
+.btn.primary{background:var(--teal);color:var(--teal-d)}
+.btn.second{background:var(--violet);color:var(--violet-d)}
+.btn.ghost{border-color:var(--line);background:transparent}
+.btn.ghost:hover:not(:disabled){border-color:var(--teal)}
+.btn.sm{min-height:40px;padding:6px 14px;font-size:.9rem;border-radius:12px}
+.btn.big{min-height:60px;padding:14px 38px;font-size:1.2rem;border-radius:18px}
+.btn:disabled,.btn[aria-disabled="true"]{opacity:.5;cursor:not-allowed}
+.btn[aria-pressed="true"]{background:var(--card2);border-color:var(--teal)}
+.btn[aria-pressed="true"]::before{content:"✓";font-weight:800}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.chip{display:inline-block;padding:3px 12px;border-radius:99px;border:1px solid var(--line);font-size:.85rem;background:var(--bg2)}
+.crumbs{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:14px}
+.sub{color:var(--muted);font-size:1.05rem}
+.bar{height:14px;border-radius:99px;background:var(--bg2);border:1px solid var(--line);overflow:hidden;margin:6px 0 22px}
+.bar>i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--teal),var(--violet));animation:grow .8s ease both}
+.notice{border:1px solid var(--line);border-left:6px solid var(--violet);background:var(--card);border-radius:12px;padding:12px 16px;margin-bottom:18px}
+.notice.teal{border-left-color:var(--teal)}
+.hero{text-align:left;padding:10px 0 6px}
+.hero h1{letter-spacing:.03em;font-size:clamp(2rem,6vw,3.2rem);background:linear-gradient(90deg,var(--teal),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:.2em}
+[data-theme="light"] .hero h1{background:none;color:var(--text)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:20px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+.stat b{display:block;font-size:1.7rem;line-height:1.2}
+.stat span{color:var(--muted);font-size:.9rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:22px}
+.mcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;display:flex;flex-direction:column;gap:6px;transition:transform .2s,border-color .2s}
+.mcard:hover{transform:translateY(-3px);border-color:var(--teal)}
+.mcard .ic{width:46px;height:46px;border-radius:14px;background:var(--card2);display:grid;place-items:center;color:var(--teal);margin-bottom:4px}
+.mcard svg,.badge svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.mcard h3{margin:0}
+.mcard p{margin:0 0 6px;font-size:.95rem;color:var(--muted)}
+.mcard .btn{margin-top:auto;align-self:flex-start}
+.st{font-size:.85rem;font-weight:700}
+.badges{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.badge{border:2px dashed var(--line);border-radius:16px;padding:14px;text-align:left;background:var(--bg2);color:var(--muted)}
+.badge .bi{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;border:2px solid var(--line);margin-bottom:8px}
+.badge.on{border:2px solid var(--teal);background:var(--card);color:var(--text)}
+.badge.on .bi{border-color:var(--teal);color:var(--teal);background:var(--card2)}
+.badge b{display:block;font-size:.95rem;line-height:1.3}
+.badge span{font-size:.82rem}
+.badge.pop .bi{animation:pop .7s ease both,ring 1.2s ease .3s 2}
+
+/* ----- wheel ----- */
+.wheel{position:relative;width:min(100%,600px);aspect-ratio:1;margin:10px auto 18px}
+.wheel .ringbg{position:absolute;inset:12%;border:2px dashed var(--line);border-radius:50%}
+.wheel .core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:26%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:1.2rem;background:linear-gradient(135deg,var(--teal),var(--violet));color:var(--teal-d)}
+[data-theme="light"] .wheel .core{color:#fff}
+.seg{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:126px;min-height:62px;padding:6px 8px;border-radius:16px;border:2px solid var(--line);background:var(--card2);color:var(--text);font:inherit;font-size:.92rem;font-weight:700;line-height:1.25;cursor:pointer;text-align:center;transition:border-color .15s,background .15s}
+.seg:hover{border-color:var(--teal)}
+.seg.seen{border-color:var(--teal)}
+.seg.cur{background:var(--teal);color:var(--teal-d);border-color:var(--teal)}
+.seg .tick{display:block;font-size:.75rem;font-weight:700;opacity:.9}
+.detail{min-height:150px}
+.detail h3{color:var(--teal)}
+
+/* ----- quiz / options ----- */
+.opts{display:grid;gap:10px;margin:14px 0}
+.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;padding:13px 16px;background:var(--card2);border:2px solid var(--line);border-radius:14px;color:var(--text);font:inherit;cursor:pointer;transition:border-color .15s,transform .15s}
+.opt:hover:not(:disabled){border-color:var(--teal);transform:translateX(3px)}
+.opt:disabled{cursor:default}
+.opt .k{flex:0 0 32px;height:32px;border-radius:50%;border:2px solid currentColor;display:grid;place-items:center;font-weight:800;font-size:.9rem;margin-top:1px}
+.opt .tag{display:block;font-size:.85rem;font-weight:800;margin-top:4px}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt.sel{border-color:var(--violet);background:var(--card)}
+.opt:focus-within{outline:3px solid var(--focus);outline-offset:3px}
+.opt.right{border-color:var(--good);background:rgba(74,222,128,.12)}
+.opt.wrong{border-color:var(--bad);border-style:dashed;background:rgba(251,146,60,.10)}
+.opt.tried{opacity:.75}
+.fb{border:1px solid var(--line);border-left:8px solid var(--good);background:var(--card);border-radius:14px;padding:14px 18px;margin:14px 0}
+.fb.no{border-left-color:var(--bad)}
+.fb.mid{border-left-color:var(--warn)}
+.fb h3{margin-bottom:.3em}
+.qmeta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+.stmt{font-size:1.3rem;font-weight:700;line-height:1.5;border-left:6px solid var(--violet);padding-left:16px;margin:10px 0 18px}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+
+/* ----- matching ----- */
+.match{display:grid;grid-template-columns:1fr 1.5fr;gap:18px}
+@media(max-width:760px){.match{grid-template-columns:1fr}}
+.match .opt{align-items:center}
+.opt.done{border-color:var(--good);background:rgba(74,222,128,.12);opacity:.95}
+.opt.pick{border-color:var(--violet);background:var(--card);box-shadow:0 0 0 3px var(--violet)}
+.opt.shake{animation:shake .35s}
+.pairno{flex:0 0 auto;font-weight:800;font-size:.85rem;border:2px solid var(--good);border-radius:99px;padding:0 9px}
+
+/* ----- word help ----- */
+.wh{background:none;border:0;border-bottom:2px dotted var(--teal);color:inherit;font:inherit;padding:0;margin:0;cursor:pointer}
+.wh:hover{background:rgba(45,212,191,.15)}
+.syl{font-size:1.7rem;font-weight:800;letter-spacing:.12em;color:var(--teal);margin:.2em 0}
+
+/* ----- dialog ----- */
+dialog{width:min(920px,94vw);max-height:90vh;padding:0;border:2px solid var(--line);border-radius:20px;background:var(--bg);color:var(--text);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+dialog::backdrop{background:rgba(3,7,18,.7)}
+.dlg-in{padding:clamp(16px,3vw,28px)}
+.dlg-head{display:flex;gap:12px;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.dlg-head h2{margin:0}
+details{border:1px solid var(--line);border-radius:12px;padding:10px 16px;margin-bottom:10px;background:var(--card)}
+summary{cursor:pointer;font-weight:700;min-height:32px}
+.key{border-top:1px solid var(--line);padding-top:8px;margin-top:8px}
+textarea.csv{width:100%;min-height:120px;font-family:Consolas,monospace;font-size:.85rem;background:var(--bg2);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px}
+
+/* ----- toast ----- */
+#toast{position:fixed;left:50%;top:76px;transform:translateX(-50%);z-index:300;pointer-events:none}
+.toast-in{background:var(--card);border:2px solid var(--teal);border-radius:16px;padding:12px 20px;box-shadow:var(--shadow);display:none;font-weight:700}
+#toast.show .toast-in{display:block;animation:pop .5s ease both}
+
+/* ----- certificate ----- */
+.cert{background:#fff;color:#111;border:6px double #1d2a4f;border-radius:6px;padding:28px 34px;max-width:760px;margin:0 auto 18px;font-family:Verdana,Tahoma,Arial,sans-serif;line-height:1.6}
+.cert h2{font-size:1.9rem;text-align:center;margin:.1em 0;color:#1d2a4f}
+.cert .k{text-align:center;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:#444;margin:0}
+.cert .t{text-align:center;font-size:1.1rem;margin:0 0 18px;color:#333}
+.cert p{max-width:none;margin:.4em 0}
+.cert .blank{display:inline-block;border-bottom:1px solid #111;min-width:280px;height:1.2em;vertical-align:bottom}
+.cert ul{margin:.3em 0 .8em}
+.cert .fine{font-size:.8rem;color:#444;margin-top:14px}
+#printCert{display:none}
+
+/* ----- reduced motion ----- */
+body.rm *,body.rm *::before,body.rm *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ----- small screens ----- */
+@media(max-width:640px){
+  .wheel{aspect-ratio:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .wheel .ringbg,.wheel .core{display:none}
+  .seg{position:static;transform:none;width:auto}
+  .brand span.t{display:none}
+  .top{position:static}
+}
+
+/* ----- print ----- */
+@page{size:A4;margin:14mm}
+@media print{
+  body{background:#fff!important;color:#000!important;font-size:12pt}
+  #app,#toast,.skip,dialog{display:none!important}
+  #printCert{display:block!important}
+  .cert{border-color:#1d2a4f;-webkit-print-color-adjust:exact;print-color-adjust:exact;margin:0 auto}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#view">Skip to main content</a>
+<div id="app">
+  <header class="top">
+    <div class="brand"><span class="dot" aria-hidden="true"></span><span class="t">IDENTITY &amp; RESPECT CHALLENGE</span></div>
+    <div class="tools" role="group" aria-label="Display and help options">
+      <button class="btn ghost sm" id="bHome" type="button">⌂ Dashboard</button>
+      <button class="btn ghost sm" id="bGloss" type="button">Aa Word help</button>
+      <button class="btn ghost sm" id="bRead" type="button" aria-pressed="false">Reading support</button>
+      <button class="btn ghost sm" id="bTheme" type="button" aria-pressed="false">Light background</button>
+      <button class="btn ghost sm" id="bMotion" type="button" aria-pressed="false">Reduce motion</button>
+      <button class="btn ghost sm" id="bHelp" type="button">Need support?</button>
+    </div>
+  </header>
+  <main id="view" tabindex="-1"></main>
+  <footer>
+    <button class="btn ghost sm" id="bTeacher" type="button">Teacher information</button>
+    <button class="btn ghost sm" id="bReset" type="button">Reset my progress</button>
+    <span class="muted small" id="storeNote"></span>
+  </footer>
+</div>
+<div id="printCert" aria-hidden="true"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<dialog id="dlg" aria-labelledby="dlgT"></dialog>
+<noscript><p style="padding:20px;font-family:Verdana,Arial,sans-serif">This learning resource needs JavaScript to be turned on in your browser.</p></noscript>
+
+<script>
+(function(){
+'use strict';
+
+/* =====================================================================
+   SCHOOL SETTINGS (teachers can edit this block before sharing)
+   ===================================================================== */
+const SCHOOL_SUPPORT = ''; // e.g. 'Safeguarding lead: Ms Jones, Room 12. Pastoral support: Mr Evans, Room 4.'
+const STORAGE_KEY = 'idrespect-y10-v1';
+
+/* =====================================================================
+   HELPERS
+   ===================================================================== */
+const $  = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
+const shuffle = a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const L = i=>String.fromCharCode(65+i);
+const pad = n=>String(n).padStart(2,'0');
+const todayStr = ()=>{const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());};
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const fmtDate = s=>{ if(!s) return ''; const p=s.split('-'); return (+p[2])+' '+MONTHS[+p[1]-1]+' '+p[0]; };
+
+/* =====================================================================
+   WORD HELP (syllables checked against standard dictionary divisions)
+   ===================================================================== */
+const WORDS={
+  identity:{word:'identity',syl:'i-den-ti-ty',mean:'The different characteristics and experiences that make someone who they are.'},
+  orientation:{word:'orientation',syl:'o-ri-en-ta-tion',mean:'In “sexual orientation”: a pattern of romantic and/or sexual attraction.'},
+  heterosexual:{word:'heterosexual',syl:'het-er-o-sex-u-al',mean:'Attracted to people of a different gender to their own.'},
+  asexual:{word:'asexual',syl:'a-sex-u-al',mean:'Experiencing little or no sexual attraction.'},
+  bisexual:{word:'bisexual',syl:'bi-sex-u-al',mean:'Attracted to more than one gender.'},
+  lesbian:{word:'lesbian',syl:'les-bi-an',mean:'A woman who is attracted to women.'},
+  transgender:{word:'transgender',syl:'trans-gen-der',mean:'A person whose gender identity is different from the sex they were registered as at birth.'},
+  nonbinary:{word:'non-binary',syl:'non-bi-na-ry',mean:'A person whose gender identity is not only “male” or only “female”.'},
+  expression:{word:'expression',syl:'ex-pres-sion',mean:'In “gender expression”: how someone shows or presents their gender, for example through clothes, hairstyle, voice and behaviour.'},
+  stereotype:{word:'stereotype',syl:'ster-e-o-type',mean:'A generalised assumption about a group of people.'},
+  prejudice:{word:'prejudice',syl:'prej-u-dice',mean:'A judgement or attitude formed before knowing the person.'},
+  discrimination:{word:'discrimination',syl:'dis-crim-i-na-tion',mean:'Treating someone unfairly because of a characteristic.'},
+  assumption:{word:'assumption',syl:'as-sump-tion',mean:'Something you accept as true without checking.'},
+  characteristic:{word:'characteristic',syl:'char-ac-ter-is-tic',mean:'A quality or feature of a person.'},
+  misconception:{word:'misconception',syl:'mis-con-cep-tion',mean:'A wrong idea that comes from a misunderstanding.'},
+  privacy:{word:'privacy',syl:'priv-a-cy',mean:'Keeping personal information to yourself, or sharing it only when you choose to.'},
+  considerate:{word:'considerate',syl:'con-sid-er-ate',mean:'Thinking about other people’s feelings.'},
+  safeguarding:{word:'safeguarding',syl:'safe-guard-ing',mean:'Protecting people from harm and keeping them safe.'}
+};
+const W=(k,label)=>`<button type="button" class="wh" data-w="${k}">${label||WORDS[k].word}</button>`;
+
+/* =====================================================================
+   CONTENT
+   ===================================================================== */
+const MISSIONS=[
+ {id:'m1',n:1,title:'Understanding Identity',time:'3–4 min',badge:'Identity Explorer',bdesc:'Completed Mission 1',
+  desc:'Explore the identity wheel and discover how many parts make up who a person is.',
+  icon:'<circle cx="12" cy="12" r="3"/><circle cx="12" cy="4" r="1.6"/><circle cx="19" cy="8" r="1.6"/><circle cx="19" cy="16" r="1.6"/><circle cx="12" cy="20" r="1.6"/><circle cx="5" cy="16" r="1.6"/><circle cx="5" cy="8" r="1.6"/>'},
+ {id:'m2',n:2,title:'Sexuality and Gender',time:'4–5 min',badge:'Vocabulary Specialist',bdesc:'Completed Mission 2',
+  desc:'Match key terms to accurate definitions and tell the difference between the main ideas.',
+  icon:'<path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v15H5.5A1.5 1.5 0 0 0 4 20.5z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v15h5.5a1.5 1.5 0 0 1 1.5 1.5z"/>'},
+ {id:'m3',n:3,title:'Spot the Stereotype',time:'4 min',badge:'Stereotype Spotter',bdesc:'Completed Mission 3',
+  desc:'Decide which statements are accurate, inaccurate, or need more information.',
+  icon:'<circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/>'},
+ {id:'m4',n:4,title:'What Would You Do?',time:'5–6 min',badge:'Respectful Decision-Maker',bdesc:'Completed Mission 4',
+  desc:'Make choices in four fictional school situations and see what happens next.',
+  icon:'<circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="12" r="2"/><path d="M6 7v10M6 12h6a4 4 0 0 0 4 0"/>'},
+ {id:'m5',n:5,title:'Final Challenge',time:'4–5 min',badge:'Identity & Respect Expert',bdesc:'Scored 70% or more in the Final Challenge',
+  desc:'Twelve questions that test what you know and how you would apply it.',
+  icon:'<path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5a2 2 0 0 0 2 4M16 6h3a2 2 0 0 1-2 4M12 13v4M9 20h6M10 17h4"/>'}
+];
+const svg=m=>`<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">${m.icon}</svg>`;
+
+/* ---- Mission 1 ---- */
+const WHEEL=[
+ {t:'Interests',x:`Things you enjoy and are good at, such as sport, music, gaming, art or coding. Anyone can enjoy any interest, so an interest does not tell you anything reliable about someone’s gender identity or sexual orientation.`},
+ {t:'Personality',x:`The way you tend to think, feel and act, for example curious, funny, shy or determined. People can show different sides of their personality in different places.`},
+ {t:'Culture',x:`Heritage, language, traditions, food and customs that are part of someone’s background or community. Some parts of culture can be seen, and some cannot.`},
+ {t:'Values',x:`What matters most to you, such as honesty, kindness, fairness or loyalty. Values guide the choices people make. They cannot be seen from the outside.`},
+ {t:'Family and community',x:`The people and places that shape you: family, friends, neighbourhood, school, clubs and community groups. Families come in many different forms.`},
+ {t:'Beliefs',x:`Ideas about life and the world. They may be religious or non-religious. People in the same family or friendship group can hold different beliefs.`},
+ {t:'Relationships',x:`The connections you have with other people, such as friendships and family relationships. As people get older, this may include romantic relationships. Healthy relationships are based on respect and trust.`},
+ {t:'Gender identity',x:`A person’s inner sense of their own gender, such as man, woman, non-binary or another description. It cannot be seen from the outside, so you cannot tell it from someone’s appearance.`},
+ {t:'Sexual orientation',x:`A pattern of romantic and/or sexual attraction. It cannot be worked out from appearance, voice or interests. Nobody needs to label themselves, or decide, at any particular age.`}
+];
+const M1Q=[
+ {q:`Which statement best describes identity?`,
+  a:`The different characteristics and experiences that contribute to who someone is`,
+  d:[`A person’s appearance`,`Only the groups someone belongs to`,`A person’s hobbies`],
+  why:`Identity is made up of many parts: interests, personality, culture, values, beliefs, relationships and more. Appearance, group membership and hobbies are each only one small piece.`},
+ {q:`Which statement about identity is accurate?`,
+  a:`Some parts of identity, such as values or gender identity, cannot be seen from the outside.`,
+  d:[`You can work out every part of someone’s identity just by looking at them.`,`Everyone has the same parts of identity in the same order of importance.`,`Only adults have an identity.`],
+  why:`Many parts of identity are invisible. That is why looking at someone cannot tell you everything about them. The wheel is not ranked: no part is more important than another.`},
+ {q:`A pupil says, “I can tell everything about Sam just by looking at them.” What is the best reply?`,
+  a:`“Appearance only shows what someone chooses to show. A lot about a person can’t be seen.”`,
+  d:[`“You’re right. Clothes and hairstyle tell you everything.”`,`“You can, as long as you also know their hobbies.”`,`“Ask Sam’s friends to confirm it for you.”`],
+  why:`Appearance shows only a small part of a person. Values, beliefs, gender identity and sexual orientation, for example, cannot be seen. Asking other people to confirm assumptions about someone is not respectful either.`}
+];
+
+/* ---- Mission 2 ---- */
+const M2ROUNDS=[
+ {title:'Round 1: Words about attraction',pairs:[
+  {t:'Sexual orientation',d:`A pattern of romantic and/or sexual attraction.`,h:`Think about who someone is attracted to.`},
+  {t:'Heterosexual',d:`Attracted to people of a different gender to their own.`,h:`The prefix “hetero” means “different”.`},
+  {t:'Gay',d:`Attracted to people of the same gender. Often used by men; some other people use it too.`,h:`Look for “the same gender”.`},
+  {t:'Bisexual',d:`Attracted to more than one gender.`,h:`The prefix “bi” means “two” or “more than one”.`},
+  {t:'Asexual',d:`Experiences little or no sexual attraction. Some asexual people feel romantic attraction; others do not.`,h:`The prefix “a” means “without” or “not”.`}]},
+ {title:'Round 2: Words about gender',pairs:[
+  {t:'Lesbian',d:`A woman who is attracted to women.`,h:`Look for the definition that mentions women.`},
+  {t:'Gender identity',d:`A person’s inner sense of their own gender, such as man, woman or non-binary.`,h:`It is an inner sense, so it cannot be seen from outside.`},
+  {t:'Gender expression',d:`How someone presents themselves through clothes, hairstyle, voice and behaviour.`,h:`This is about how someone shows or presents themselves.`},
+  {t:'Transgender',d:`A person whose gender identity is different from the sex they were registered as at birth.`,h:`Compare gender identity with the sex registered at birth.`},
+  {t:'Non-binary',d:`A person whose gender identity is not only “male” or only “female”.`,h:`This is about gender identity that is not limited to male or female.`}]}
+];
+const M2B=[
+ {q:`Someone enjoys wearing clothes that other people associate with a different gender. Does this tell us their sexual orientation?`,
+  a:`No. Clothing and gender expression do not reliably tell us someone’s sexual orientation.`,
+  d:[`Yes. Clothes show who someone is attracted to.`,`Yes, but only if they wear those clothes every day.`,`Yes, because gender expression and sexual orientation are the same thing.`],
+  why:`Gender expression is how someone presents themselves (clothes, hairstyle, voice, behaviour). Sexual orientation is about who someone is attracted to. They are separate ideas, and one does not reliably tell you about the other.`},
+ {q:`Which concept describes who someone feels romantic and/or sexual attraction towards?`,
+  a:`Sexual orientation`,d:[`Gender identity`,`Gender expression`,`A stereotype`],
+  why:`Sexual orientation is a pattern of romantic and/or sexual attraction. Gender identity is a person’s inner sense of their own gender, and gender expression is how they present it.`},
+ {q:`Which word describes a person whose gender identity is different from the sex they were registered as at birth?`,
+  a:`Transgender`,d:[`Heterosexual`,`Asexual`,`Bisexual`],
+  why:`Transgender (or trans) is about gender identity. Heterosexual, asexual and bisexual are words about attraction (sexual orientation), which is a different idea.`},
+ {q:`A person tells you they use the pronouns “they/them”. What is the most respectful approach?`,
+  a:`Use the words they use for themselves.`,
+  d:[`Guess which words to use based on how they look.`,`Ask them to explain and justify it to the whole group.`,`Avoid speaking to them in case you get it wrong.`],
+  why:`Respect means listening and using the words people use for themselves. If you make a mistake, correct yourself briefly and carry on. Asking someone to justify their identity in front of others is not respectful.`}
+];
+
+/* ---- Mission 3 ---- */
+const M3S=[
+ {s:`You can tell someone’s sexual orientation from their clothing.`,a:'inacc',
+  why:`Clothing shows style and personal choice, not who someone is attracted to. Sexual orientation cannot be worked out from appearance, voice or interests.`},
+ {s:`People can have different romantic and sexual experiences.`,a:'acc',
+  why:`People experience attraction in different ways. For example, some people feel romantic attraction but little or no sexual attraction, and others feel both. This is part of the normal range of human experience.`},
+ {s:`Someone’s interests determine their gender identity.`,a:'inacc',
+  why:`Interests are what a person enjoys. People of every gender enjoy every activity, so a hobby tells you nothing reliable about gender identity.`},
+ {s:`Stereotypes can lead to unfair assumptions.`,a:'acc',
+  why:`A stereotype is a generalised idea about a group. It treats individuals as if they were all the same, so it can lead to unfair assumptions, teasing and unfair treatment.`},
+ {s:`Everyone must choose a label for their identity.`,a:'inacc',
+  why:`Some people use words that fit them; others prefer not to use a label. Nobody has to label themselves, or decide, at any particular age.`},
+ {s:`Jamie said the word “gay” in a conversation, so Jamie was being disrespectful.`,a:'nmi',
+  missing:`how and why the word was used. Used accurately to describe someone’s sexual orientation, it is respectful. Used as an insult, or as a “joke” against someone, it is not. We are not told which happened.`,
+  why:`We cannot decide from this one sentence.`},
+ {s:`A person’s appearance tells you everything about them.`,a:'inacc',
+  why:`Appearance shows only what someone chooses to show. Much of identity, such as values, beliefs, gender identity and sexual orientation, cannot be seen.`},
+ {s:`Respecting someone means agreeing with every opinion they have.`,a:'inacc',
+  why:`You can disagree with ideas, politely, and still treat the person with dignity. Respect is about how we treat people, not about agreeing with everything.`},
+ {s:`People express their gender in many different ways, and this varies between people and cultures.`,a:'acc',
+  why:`Gender expression (clothes, hairstyle, voice and behaviour) differs from person to person and from culture to culture. It is separate from gender identity and sexual orientation.`},
+ {s:`Someone’s private information should always be shared with their friends.`,a:'inacc',
+  why:`Personal information belongs to the person. It is theirs to share, so it should not be passed on. The one exception is if you are worried about someone’s safety. Then you should tell a trusted adult, not their friends.`},
+ {s:`Mia’s friend told her something private. Mia then told a teacher, so Mia did the right thing.`,a:'nmi',
+  missing:`what the private information was, and whether Mia was worried about her friend’s safety. If she was worried about safety, telling a trusted adult is right. If it was simply personal and not a safety concern, it should have stayed private.`,
+  why:`We cannot decide without knowing the details.`}
+];
+const M3LAB={acc:'Accurate',inacc:'Inaccurate',nmi:'Needs more information'};
+
+/* ---- Mission 4 ---- */
+const SCEN=[
+ {title:'Making assumptions',
+  setup:`<p>Cai loves dance and drama and often wears bright clothes. Another pupil, Dylan, keeps joking in front of other people that Cai “must be gay”. Cai has gone quiet and has stopped joining in.</p><p>You see it happen again in the corridor. You are a bystander.</p>`,
+  q:`What do you do?`,
+  opts:[
+   {r:'best',t:`If it feels safe, say calmly, “That’s not OK. You don’t know that.” Then check Cai is alright, and tell a member of staff if it carries on.`,
+    fb:`This challenges the behaviour, not the person, and it supports Cai. Short and calm works best. Telling staff matters because repeated comments can become bullying, and staff can act so you do not have to deal with it alone.`,
+    next:`Dylan looks embarrassed and the group goes quiet. Later, Cai quietly thanks you. You tell your form tutor, who speaks to Dylan privately about assumptions and respectful language.`},
+   {r:'part',t:`Say nothing in the moment, but message Cai later to see if they are OK.`,
+    fb:`Checking on Cai is kind, and it is a sensible choice if speaking up does not feel safe. But the comments are likely to continue unless someone acts. The next step would be to tell a trusted adult.`,
+    next:`Cai replies with a thumbs-up but does not say much. The comments carry on the following week. You decide to talk to your form tutor.`},
+   {r:'poor',t:`Laugh along. It’s only a joke.`,
+    fb:`Laughing tells Dylan that his behaviour is acceptable and can make Cai feel more alone. Repeated comments about someone’s sexuality are not harmless “banter”. They can become bullying.`,
+    next:`Dylan carries on and others join in. Cai stops going to drama club. It is never too late to change your response: you could still support Cai and tell an adult.`}],
+  adult:`If this keeps happening, tell your form tutor, the safeguarding lead or another member of staff. You are not “telling tales”. You are helping to keep someone safe.`,
+  key:`Challenge assumptions calmly if it feels safe, support the person affected, and tell a member of staff if it continues.`},
+ {title:'Respecting privacy',
+  setup:`<p>Your friend Morgan privately tells you something personal about their identity. A few days later, another pupil, Gethin, says, “The whole group has a right to know. Just tell me.”</p>`,
+  q:`How do you respond?`,
+  opts:[
+   {r:'best',t:`Tell Gethin calmly, “That’s Morgan’s to share, not mine.” Don’t hint or confirm anything. If you are worried about Morgan’s safety, tell a trusted adult.`,
+    fb:`Personal information belongs to the person it is about. Morgan decides who knows and when. Being clear and calm sets a boundary without starting an argument. Telling a trusted adult is only for when you are worried about someone’s safety.`,
+    next:`Gethin shrugs and moves on. You let Morgan know that someone has been asking, so Morgan can decide what to do. Morgan trusts you more.`},
+   {r:'part',t:`Change the subject and avoid Gethin for a while.`,
+    fb:`This keeps the information private for now, which is good. But avoiding does not make your boundary clear, so Gethin may keep asking you or start asking other people. A calm “That’s not mine to share” works better.`,
+    next:`Gethin keeps asking and starts guessing out loud in front of others. You realise a clear answer would have stopped it sooner.`},
+   {r:'poor',t:`Tell Gethin just this once, because he will probably find out anyway.`,
+    fb:`Sharing someone’s private information takes away their choice about who knows and when. Even if you think it will come out anyway, it must be their decision. It can cause real harm and break trust.`,
+    next:`Gethin tells others and Morgan hears about it. Morgan feels let down and unsafe. You could still reconsider: apologise, and support Morgan.`}],
+  adult:`If you ever feel worried about a friend’s safety or wellbeing, tell a trusted adult. Staff are there to help, and it is the right thing to do.`,
+  key:`Personal information is theirs to share. Do not pass it on or speculate. If you are worried about someone’s safety, tell a trusted adult.`},
+ {title:'Disrespectful language',
+  setup:`<p>In your year group chat, someone posts a message mocking a pupil called Tom’s sexuality and uses it as an insult. A few people react with laughing emojis.</p>`,
+  q:`How could you respond safely and appropriately?`,
+  opts:[
+   {r:'best',t:`Don’t reply with insults or react to the message. Take a screenshot, use the app’s report option, tell a trusted adult, and check Tom is OK.`,
+    fb:`This keeps you safe and avoids making things worse. A screenshot gives staff evidence. Keep it for staff only and do not forward it around. Reporting and telling an adult means people with the power to act can do so. Checking on Tom shows support.`,
+    next:`The message is removed and staff speak to the people involved. Tom messages you to say thanks. The chat becomes quieter.`},
+   {r:'part',t:`Quietly leave the chat without saying anything.`,
+    fb:`Leaving protects you from seeing more of it, but the message stays there and nothing helps Tom. Reporting it and telling an adult can.`,
+    next:`The chat carries on without you. Later you hear Tom was upset by it. You decide to tell a member of staff after all.`},
+   {r:'poor',t:`Reply with an insult to put them in their place.`,
+    fb:`Insults escalate things and make you part of the problem. It could also get you into trouble. Disrespectful behaviour should be challenged without targeting anyone, and the safest way is to report it.`,
+    next:`The chat turns into an argument and more screenshots are shared. Tom feels even worse. Reconsider: reporting it would have been safer and more effective.`}],
+  adult:`If something online upsets you or someone else, tell a trusted adult. If you are worried about your safety, do not respond to the people involved.`,
+  key:`Do not join in or reply with insults. Keep evidence, report it, and tell a trusted adult. Check on the person affected.`},
+ {title:'Respectful disagreement',
+  setup:`<p>In a group discussion, Rhys and Ffion have different beliefs about gender and relationships. Their conversation becomes personal. They raise their voices and start insulting each other. The rest of the group looks uncomfortable.</p>`,
+  q:`You are in the group. What could you do so they can discuss ideas without targeting each other?`,
+  opts:[
+   {r:'best',t:`Suggest a pause: “We can disagree about ideas without insulting each other. Can we each explain our view and listen?” If it keeps going, ask the teacher for help.`,
+    fb:`This separates ideas from people. Disagreeing is fine. Insulting a person is not. Respect means treating people with dignity, not agreeing with every belief. Asking an adult for help is sensible if it escalates.`,
+    next:`Rhys and Ffion take a breath. Each explains their view while the other listens. They still disagree, but the discussion becomes calm.`},
+   {r:'part',t:`Tell them both to stop, then change the topic.`,
+    fb:`Stopping the insults helps. But changing the subject does not show anyone how to disagree respectfully, and the tension may remain. Suggesting a way to carry on respectfully, or asking the teacher, would go further.`,
+    next:`The insults stop, but Rhys and Ffion stay annoyed with each other. The disagreement returns at break time.`},
+   {r:'poor',t:`Pick a side and join in against the other person.`,
+    fb:`This turns a discussion of ideas into a fight between people, and it makes the harm bigger. We can disagree with an idea without attacking anyone who holds it.`,
+    next:`More people join in and the group splits. The teacher has to step in. Reconsider: a calm pause would have helped everyone.`}],
+  adult:`If a discussion becomes personal, insulting or unsafe, step back and ask a teacher or another member of staff to help.`,
+  key:`Challenge ideas, not people. You can disagree and still treat someone with dignity. Ask a teacher for help if it escalates.`}
+];
+const RLAB={best:'Most constructive response',part:'Helpful, but it could go further',poor:'Less helpful: this could make things worse'};
+const RPTS={best:2,part:1,poor:0};
+const RICON={best:'✔',part:'◐',poor:'✖'};
+
+/* ---- Mission 5 ---- */
+const Q5=[
+ {c:'K',f:'Multiple choice',q:`Which phrase best describes sexual orientation?`,
+  a:`Patterns of romantic and/or sexual attraction`,d:[`The way someone dresses and presents themselves`,`A person’s inner sense of their own gender`,`The sex someone was registered as at birth`],
+  why:`Sexual orientation is about romantic and/or sexual attraction. How someone presents themselves is gender expression, and a person’s inner sense of their gender is gender identity.`},
+ {c:'K',f:'Match the definition',q:`Which term matches this definition: “A person’s inner sense of their own gender”?`,
+  a:`Gender identity`,d:[`Gender expression`,`Sexual orientation`,`Stereotype`],
+  why:`Gender identity is a person’s inner sense of their own gender. It cannot be seen from the outside.`},
+ {c:'K',f:'Match the definition',q:`Which term matches this definition: “Attracted to more than one gender”?`,
+  a:`Bisexual`,d:[`Heterosexual`,`Asexual`,`Transgender`],
+  why:`Bisexual means attracted to more than one gender. Heterosexual means attracted to a different gender, asexual means little or no sexual attraction, and transgender is about gender identity.`},
+ {c:'K',f:'Match the definition',q:`Which term matches this definition: “Unfair treatment of someone because of a characteristic”?`,
+  a:`Discrimination`,d:[`Stereotype`,`Prejudice`,`Identity`],
+  why:`Discrimination is an action: unfair treatment. A stereotype is an idea and prejudice is an attitude.`},
+ {c:'A',f:'Identify the misconception',q:`A pupil says, “He loves dance and fashion, so he must be gay.” Which response identifies the misconception?`,
+  a:`Interests and clothes do not reliably show sexual orientation, so this is an assumption.`,
+  d:[`He is probably right, because interests show orientation.`,`It is fine as long as the pupil says it quietly.`,`We should ask his friends to find out for sure.`],
+  why:`Sexual orientation cannot be worked out from interests, clothes, voice or appearance. Making assumptions, or asking other people to confirm them, is not respectful.`},
+ {c:'A',f:'Scenario decision',q:`Elin privately tells you something personal about her identity. Later, another pupil asks you to tell them. What should you do?`,
+  a:`Keep it private because it is Elin’s to share, and tell a trusted adult only if you are worried about her safety.`,
+  d:[`Tell a few close friends so you are not carrying it alone.`,`Give small hints so the pupil can work it out.`,`Post it anonymously so nobody knows it came from you.`],
+  why:`Personal information belongs to the person. Passing it on, hinting at it or posting it takes away their choice. The only exception is when you are worried about their safety, and then you speak to a trusted adult.`},
+ {c:'A',f:'Most respectful response',q:`A classmate has told people which words they would like others to use for them. Which is the most respectful response?`,
+  a:`Use the words they have asked for, and if you slip up, correct yourself briefly and carry on.`,
+  d:[`Use the words you would choose based on how they look.`,`Ask them to prove it is who they are.`,`Avoid talking to them so you don’t make a mistake.`],
+  why:`Respect means listening and using the words people use for themselves. Mistakes happen. A short correction is enough.`},
+ {c:'A',f:'Scenario decision',q:`In the corridor, a pupil uses “gay” as an insult. You feel safe enough to act. What is the most appropriate response?`,
+  a:`Say calmly that it is not OK, check the person affected is alright, and tell a member of staff.`,
+  d:[`Say nothing, because it is only a word.`,`Shout insults back to teach them a lesson.`,`Laugh along so you fit in.`],
+  why:`Identity words should never be used as insults. A calm, short challenge (only if it feels safe), support for the person affected, and telling staff is constructive and does not escalate.`},
+ {c:'R',f:'Multiple choice',q:`Why can describing a person using only one label be misleading?`,
+  a:`Identity has many parts, and a single label leaves most of them out.`,
+  d:[`Labels are always wrong.`,`Only adults have identities.`,`People should never use words to describe themselves.`],
+  why:`People may choose words that fit them, and that is fine. The problem comes when one label is treated as the whole person, because identity includes interests, personality, culture, values, beliefs and relationships as well.`},
+ {c:'R',f:'Match the definition',q:`Which statement correctly explains the difference between prejudice and discrimination?`,
+  a:`Prejudice is a judgement or attitude. Discrimination is unfair treatment, which is an action.`,
+  d:[`Prejudice is an action. Discrimination is only an attitude.`,`They mean exactly the same thing.`,`Prejudice is always against the law. Discrimination never is.`],
+  why:`Prejudice is an attitude formed before knowing someone. Discrimination is what happens when that attitude becomes unfair treatment. Some discrimination is unlawful under the Equality Act 2010.`},
+ {c:'R',f:'Most respectful response',q:`Rhys and Ffion disagree about beliefs on gender and relationships. Which approach separates disagreement from disrespect?`,
+  a:`Explain their own views, listen to each other, and challenge ideas without insulting the person.`,
+  d:[`Insult the other person until they stop.`,`Refuse to speak to anyone who disagrees.`,`Pretend to agree with everything to avoid conflict.`],
+  why:`You can disagree with ideas and still treat people with dignity. Insults target a person, not an idea.`},
+ {c:'R',f:'Identify the misconception',q:`Someone says, “Positive stereotypes are harmless.” Which evaluation is best?`,
+  a:`Even positive stereotypes assume everyone in a group is the same, which can pressure or exclude individuals.`,
+  d:[`They are harmless because they sound like compliments.`,`They only matter when adults use them.`,`They are accurate because they come from real groups.`],
+  why:`Any stereotype treats individuals as if they were all the same. Even a “positive” one can put pressure on people or leave out those who do not fit it.`}
+];
+const CATS={K:'Knowledge',A:'Application',R:'Reasoning and evaluation'};
+const LEVELS=[
+ {min:85,name:'Identity & Respect Expert',msg:`Excellent work. You explained the key ideas accurately and applied them carefully to realistic situations.`},
+ {min:70,name:'Respect Champion',msg:`Strong understanding. You know the key ideas and can usually apply them well.`},
+ {min:50,name:'Developing Understanding',msg:`You are building a solid understanding. A few ideas are still settling, and replaying a mission will help.`},
+ {min:0,name:'Keep Practising',msg:`Every mission completed is real progress. These are new ideas for many people. Replay any mission, then try the Final Challenge again. There is no penalty for retrying.`}
+];
+const levelFor=p=>LEVELS.find(l=>p>=l.min);
+
+const MAXP={m1:M1Q.length,m2:10+M2B.length,m3:M3S.length,m4:SCEN.length*2,m5:Q5.length};
+const MAXTOTAL=Object.values(MAXP).reduce((a,b)=>a+b,0);
+
+/* =====================================================================
+   STATE + STORAGE (works even if localStorage is blocked)
+   ===================================================================== */
+const defState=()=>({v:1,done:{m1:false,m2:false,m3:false,m4:false,m5:false},pts:{m1:0,m2:0,m3:0,m4:0,m5:0},
+  badges:{m1:false,m2:false,m3:false,m4:false,m5:false},final:null,settings:{reading:false,light:false,reduce:null}});
+let storageOK=true;
+function loadState(){
+  const base=defState();
+  try{
+    const raw=window.localStorage.getItem(STORAGE_KEY);
+    if(!raw) return base;
+    const o=JSON.parse(raw);
+    if(!o||o.v!==1) return base;
+    for(const k of ['done','pts','badges','settings']) if(o[k]&&typeof o[k]==='object') Object.assign(base[k],o[k]);
+    if(o.final&&typeof o.final==='object'&&typeof o.final.score==='number') base.final=o.final;
+    return base;
+  }catch(e){ storageOK=false; return base; }
+}
+let S=loadState();
+function save(){
+  try{ window.localStorage.setItem(STORAGE_KEY,JSON.stringify(S)); }
+  catch(e){ storageOK=false; }
+  updateStoreNote();
+}
+function testStorage(){
+  try{ const k='__t'; window.localStorage.setItem(k,'1'); window.localStorage.removeItem(k); }
+  catch(e){ storageOK=false; }
+}
+function updateStoreNote(){
+  $('#storeNote').textContent = storageOK ? 'Progress is saved on this device only.' : 'Saving is not available here, so progress will be lost if you close or refresh this page.';
+}
+
+/* derived */
+const doneCount=()=>MISSIONS.filter(m=>S.done[m.id]).length;
+const totalPts=()=>MISSIONS.reduce((a,m)=>a+(S.pts[m.id]||0),0);
+const badgeCount=()=>MISSIONS.filter(m=>S.badges[m.id]).length;
+const allDone=()=>doneCount()===5;
+const firstFourDone=()=>['m1','m2','m3','m4'].every(k=>S.done[k]);
+const isLocked=id=>id==='m5'&&!firstFourDone();
+
+function award(id){
+  if(S.badges[id]) return false;
+  S.badges[id]=true; save();
+  const m=MISSIONS.find(x=>x.id===id);
+  toast(`<span aria-hidden="true">★</span> Badge unlocked: ${m.badge}`);
+  return true;
+}
+function finishMission(id,pts){
+  S.pts[id]=Math.max(S.pts[id]||0,pts);
+  S.done[id]=true;
+  save();
+  if(id!=='m5') return award(id);
+  return false;
+}
+
+/* =====================================================================
+   UI HELPERS
+   ===================================================================== */
+let cur='home';
+const view=$('#view');
+function show(html,keepFocus){
+  view.innerHTML=html;
+  view.classList.remove('enter'); void view.offsetWidth; view.classList.add('enter');
+  const h=$('h1',view);
+  if(h&&!keepFocus){ h.tabIndex=-1; h.focus({preventScroll:true}); }
+  window.scrollTo(0,0);
+}
+let toastT;
+function toast(html){
+  const t=$('#toast'); t.innerHTML=`<div class="toast-in">${html}</div>`; t.classList.add('show');
+  clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),4500);
+}
+function bar(p){ return `<div class="bar" role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${p}"><i style="--w:${p}%;width:${p}%"></i></div>`; }
+function shell(m,sub,pct,body){
+  return `<div class="crumbs"><button class="btn ghost sm" type="button" data-act="home">← Dashboard</button><span class="chip">Mission ${m.n} of 5 · about ${m.time}</span></div>
+  <h1>Mission ${m.n}: ${m.title}</h1>${sub?`<p class="sub">${sub}</p>`:''}${bar(pct)}${body}
+  <p class="muted small">Tip: words with a dotted underline can be clicked for a syllable breakdown and meaning.</p>`;
+}
+function openDlg(title,body){
+  const d=$('#dlg');
+  d.innerHTML=`<div class="dlg-in"><div class="dlg-head"><h2 id="dlgT">${title}</h2><button class="btn ghost sm" type="button" data-close>Close ✕</button></div><div>${body}</div></div>`;
+  if(typeof d.showModal==='function'){ if(!d.open) d.showModal(); } else d.setAttribute('open','');
+  d.scrollTop=0;
+}
+function closeDlg(){ const d=$('#dlg'); if(typeof d.close==='function'&&d.open) d.close(); else d.removeAttribute('open'); }
+
+/* =====================================================================
+   GENERIC QUIZ (one question at a time, instant feedback)
+   ===================================================================== */
+function runQuiz(root,qs,onDone,startPts){
+  let i=0; const res=[];
+  const draw=()=>{
+    const q=qs[i];
+    const opts=shuffle([{t:q.a,ok:true},...q.d.map(t=>({t,ok:false}))]);
+    root.innerHTML=`<div class="card"><div class="qmeta"><span class="chip">Question ${i+1} of ${qs.length}</span></div>
+      <h2 id="qh">${q.q}</h2>
+      <div class="opts" role="group" aria-labelledby="qh">${opts.map((o,k)=>`<button type="button" class="opt" data-k="${k}"><span class="k" aria-hidden="true">${L(k)}</span><span class="txt">${o.t}</span></button>`).join('')}</div>
+      <div id="fbw" role="status" aria-live="polite"></div></div>`;
+    $$('.opt',root).forEach(b=>b.addEventListener('click',()=>{
+      const k=+b.dataset.k, ok=opts[k].ok; res.push(ok);
+      $$('.opt',root).forEach((x,j)=>{
+        x.disabled=true;
+        if(opts[j].ok){x.classList.add('right'); x.querySelector('.txt').insertAdjacentHTML('beforeend','<span class="tag">✔ Correct answer</span>');}
+        else if(j===k){x.classList.add('wrong'); x.querySelector('.txt').insertAdjacentHTML('beforeend','<span class="tag">✖ Your answer</span>');}
+      });
+      $('#fbw',root).innerHTML=`<div class="fb ${ok?'':'no'}"><h3>${ok?'✔ Correct':'✖ Not quite'}</h3><p>${q.why}</p></div>
+        <button type="button" class="btn primary" id="nx">${i<qs.length-1?'Next question →':'Finish →'}</button>`;
+      const nx=$('#nx',root); nx.focus();
+      nx.addEventListener('click',()=>{ i++; if(i<qs.length) draw(); else onDone(res); });
+    }));
+  };
+  draw();
+}
+
+/* =====================================================================
+   HOME
+   ===================================================================== */
+function viewHome(){
+  cur='home';
+  const n=doneCount(), pct=Math.round(n/5*100), started=n>0||totalPts()>0;
+  let label='Start Learning', target='m1';
+  if(allDone()){label='View my results'; target='done';}
+  else if(started){ label='Continue Learning'; const nx=MISSIONS.find(m=>!S.done[m.id]&&!isLocked(m.id)); target=nx?nx.id:'m1'; }
+  const cards=MISSIONS.map(m=>{
+    const lock=isLocked(m.id), done=S.done[m.id];
+    const st=lock?'🔒 Locked: finish Missions 1–4 first':(done?'✔ Completed':'○ Not started');
+    return `<article class="mcard"><div class="ic">${svg(m)}</div><span class="muted small">Mission ${m.n} · about ${m.time}</span><h3>${m.title}</h3><p>${m.desc}</p>
+      <span class="st">${st}</span>
+      <button type="button" class="btn ${done?'ghost':'primary'}" data-go="${m.id}" ${lock?'disabled':''}>${lock?'Locked':(done?'Replay':'Start')}<span class="sr"> Mission ${m.n}: ${m.title}</span></button></article>`;
+  }).join('');
+  const badges=MISSIONS.map(m=>{const on=S.badges[m.id];
+    return `<div class="badge ${on?'on':''}"><div class="bi">${svg(m)}</div><b>${m.badge}</b><span>${on?'✔ Earned':'🔒 Locked: '+m.bdesc}</span></div>`;}).join('');
+  show(`
+  <section class="hero"><h1>IDENTITY &amp; RESPECT CHALLENGE</h1>
+  <p class="sub">Explore identity, challenge assumptions and practise respectful decisions.</p>
+  <div class="notice teal"><strong>Before you start:</strong> This activity explores identity and respect. You will not be asked to share personal information about yourself.</div>
+  <button type="button" class="btn primary big" data-go="${target}">${label} →</button></section>
+  <div class="stats" aria-label="Your progress">
+    <div class="stat"><b>${pct}%</b><span>Overall progress</span>${bar(pct)}</div>
+    <div class="stat"><b>${n} / 5</b><span>Missions completed</span></div>
+    <div class="stat"><b>${totalPts()} / ${MAXTOTAL}</b><span>Current score (points)</span></div>
+    <div class="stat"><b>${badgeCount()} / 5</b><span>Badges earned</span></div>
+  </div>
+  <h2>Your missions</h2><div class="grid">${cards}</div>
+  <h2>Your badges</h2><p class="muted">Badges show what you have learned. They do not say anything about you personally.</p>
+  <div class="badges">${badges}</div>`);
+}
+
+/* =====================================================================
+   MISSION 1
+   ===================================================================== */
+function viewM1(){
+  cur='m1'; const m=MISSIONS[0]; const seen=new Set();
+  const pos=WHEEL.map((w,i)=>{const a=(-90+i*40)*Math.PI/180; return {x:(50+40*Math.cos(a)).toFixed(2)+'%',y:(50+40*Math.sin(a)).toFixed(2)+'%'};});
+  show(shell(m,'Step 1 of 2: explore the identity wheel',10,`
+   <div class="card"><p>Identity is made up of many parts. Select each part of the wheel to read about it. The parts are <strong>not ranked</strong>, and no part is more important than another.</p>
+   <p class="muted">Think about people in general. You do not need to share anything about yourself.</p></div>
+   <div class="wheel" role="group" aria-label="Identity wheel. Select each part to read about it.">
+     <div class="ringbg" aria-hidden="true"></div><div class="core" aria-hidden="true">Identity</div>
+     ${WHEEL.map((w,i)=>`<button type="button" class="seg" data-i="${i}" style="--x:${pos[i].x};--y:${pos[i].y}">${w.t}<span class="tick" hidden>✓ explored</span></button>`).join('')}
+   </div>
+   <div class="card detail" id="detail" aria-live="polite"><p class="muted">Select a part of the wheel to read about it.</p></div>
+   <div class="row"><button type="button" class="btn primary" id="go" disabled>Continue to knowledge check →</button><span id="cnt" class="muted">0 of ${WHEEL.length} explored</span></div>`));
+  $$('.seg').forEach(b=>b.addEventListener('click',()=>{
+    const i=+b.dataset.i; seen.add(i);
+    $$('.seg').forEach(x=>{x.classList.remove('cur'); x.removeAttribute('aria-current');});
+    b.classList.add('cur'); b.setAttribute('aria-current','true'); b.classList.add('seen'); $('.tick',b).hidden=false;
+    $('#detail').innerHTML=`<h3>${WHEEL[i].t}</h3><p>${WHEEL[i].x}</p>`;
+    $('#cnt').textContent=`${seen.size} of ${WHEEL.length} explored`;
+    if(seen.size===WHEEL.length){ $('#go').disabled=false; $('#cnt').textContent='All explored. Well done!'; }
+  }));
+  $('#go').addEventListener('click',()=>{
+    show(shell(m,'Step 2 of 2: knowledge check',60,`<div id="qz"></div>`));
+    runQuiz($('#qz'),M1Q,res=>{
+      const pts=res.filter(Boolean).length;
+      completeScreen(m,pts,MAXP.m1,finishMission('m1',pts));
+    });
+  });
+}
+
+/* generic mission-complete screen (missions 1–4) */
+function completeScreen(m,pts,max,newBadge,extra){
+  const nxt=MISSIONS[m.n]; // next mission object or undefined
+  show(`<div class="crumbs"><span class="chip">Mission ${m.n} of 5</span></div>
+   <h1>Mission ${m.n} complete!</h1>${bar(100)}
+   <div class="card"><p>You scored <strong>${pts} out of ${max}</strong> in this mission. ${pts===max?'Excellent work.':'Good effort. You can replay this mission at any time to improve your score.'}</p>${extra||''}</div>
+   <div class="badges"><div class="badge on ${newBadge?'pop':''}"><div class="bi">${svg(m)}</div><b>${m.badge}</b><span>✔ Badge earned</span></div></div>
+   <div class="row" style="margin-top:18px">
+     ${nxt&&!isLocked(nxt.id)?`<button type="button" class="btn primary" data-go="${nxt.id}">Next: Mission ${nxt.n} →</button>`:''}
+     <button type="button" class="btn ghost" data-act="home">Back to dashboard</button></div>`);
+}
+
+/* =====================================================================
+   MISSION 2
+   ===================================================================== */
+function viewM2(){
+  cur='m2'; const m=MISSIONS[1]; let pts=0;
+  const round=ri=>{
+    const R=M2ROUNDS[ri]; const defs=shuffle(R.pairs.map((p,i)=>({i,d:p.d}))); const terms=shuffle(R.pairs.map((p,i)=>({i,t:p.t})));
+    const missed=new Set(); let selT=null, selD=null, matched=0;
+    show(shell(m,`Activity A: match the terms (${ri+1} of 2)`,ri===0?10:35,`
+      <div class="card"><h2>${R.title}</h2><p>Select a <strong>term</strong>, then select its <strong>definition</strong>. If it is not a match, you can try again. No dragging is needed.</p></div>
+      <div class="match">
+        <div><h3 id="th">Terms</h3><div class="opts" role="group" aria-labelledby="th">${terms.map(o=>`<button type="button" class="opt" data-t="${o.i}"><span class="txt">${o.t}</span></button>`).join('')}</div></div>
+        <div><h3 id="dh">Definitions</h3><div class="opts" role="group" aria-labelledby="dh">${defs.map(o=>`<button type="button" class="opt" data-d="${o.i}"><span class="txt">${o.d}</span></button>`).join('')}</div></div>
+      </div><div id="msg" role="status" aria-live="polite" class="fb mid" hidden></div><div id="after"></div>`));
+    const bt=()=>$$('[data-t]'), bd=()=>$$('[data-d]');
+    const say=(h,cls)=>{const e=$('#msg'); e.hidden=false; e.className='fb '+(cls||''); e.innerHTML=h;};
+    const clearSel=()=>{[...bt(),...bd()].forEach(b=>{b.classList.remove('pick'); b.removeAttribute('aria-pressed');}); selT=selD=null;};
+    const pick=(b,kind)=>{
+      if(b.classList.contains('done')) return;
+      const same=(kind==='t'?selT:selD);
+      (kind==='t'?bt():bd()).forEach(x=>{x.classList.remove('pick'); x.removeAttribute('aria-pressed');});
+      if(same===+b.dataset[kind]){ if(kind==='t')selT=null; else selD=null; return; }
+      b.classList.add('pick'); b.setAttribute('aria-pressed','true');
+      if(kind==='t') selT=+b.dataset.t; else selD=+b.dataset.d;
+      if(selT!==null&&selD!==null) evaluate();
+    };
+    const evaluate=()=>{
+      const tb=bt().find(x=>+x.dataset.t===selT), db=bd().find(x=>+x.dataset.d===selD);
+      if(selT===selD){
+        matched++; const no=matched;
+        [tb,db].forEach(x=>{x.classList.remove('pick'); x.removeAttribute('aria-pressed'); x.classList.add('done'); x.disabled=true; x.insertAdjacentHTML('beforeend',`<span class="pairno">✔ pair ${no}</span>`);});
+        say(`<h3>✔ Match!</h3><p><strong>${R.pairs[selT].t}</strong>: ${R.pairs[selT].d}</p>`,'');
+        selT=selD=null;
+        if(matched===R.pairs.length) finishRound();
+      }else{
+        missed.add(selT);
+        say(`<h3>✖ Not a match. Try again.</h3><p>Hint for “${R.pairs[selT].t}”: ${R.pairs[selT].h}</p>`,'no');
+        [tb,db].forEach(x=>{x.classList.add('shake'); setTimeout(()=>x.classList.remove('shake'),400);});
+        clearSel();
+      }
+    };
+    const finishRound=()=>{
+      const rp=R.pairs.length-missed.size; pts+=rp;
+      const last=ri===M2ROUNDS.length-1;
+      $('#after').innerHTML=`<div class="card"><h3>Round complete</h3><p>You matched ${rp} of ${R.pairs.length} on the first try. ${ri===1?`Remember: these words describe people who choose to use them. Never assume how someone describes themselves.`:`Gay and lesbian are both used to describe same-gender attraction. You will meet “lesbian” in the next round.`}</p>
+        <button type="button" class="btn primary" id="nr">${last?'Continue to Activity B →':'Next round →'}</button></div>`;
+      const nr=$('#nr'); nr.focus(); nr.addEventListener('click',()=>last?activityB():round(ri+1));
+    };
+    bt().forEach(b=>b.addEventListener('click',()=>pick(b,'t')));
+    bd().forEach(b=>b.addEventListener('click',()=>pick(b,'d')));
+  };
+  const activityB=()=>{
+    show(shell(m,'Activity B: which concept?',70,`<div class="card"><p>These questions test the difference between <strong>sexual orientation</strong>, <strong>gender identity</strong> and <strong>gender expression</strong>.</p></div><div id="qz"></div>`));
+    runQuiz($('#qz'),M2B,res=>{
+      const b=res.filter(Boolean).length; pts+=b;
+      completeScreen(m,pts,MAXP.m2,finishMission('m2',pts),`<p>The big idea: ${W('orientation','sexual orientation')} (who someone is attracted to), gender identity (a person’s inner sense of their gender) and ${W('expression','gender expression')} (how someone presents themselves) are three separate ideas. One does not reliably tell you about the others.</p>`);
+    });
+  };
+  round(0);
+}
+
+/* =====================================================================
+   MISSION 3
+   ===================================================================== */
+function viewM3(){
+  cur='m3'; const m=MISSIONS[2]; let i=0, pts=0;
+  const draw=()=>{
+    const s=M3S[i];
+    show(shell(m,'Decide: accurate, inaccurate, or needs more information?',Math.round(i/M3S.length*100),`
+     <div class="card"><div class="qmeta"><span class="chip">Statement ${i+1} of ${M3S.length}</span></div>
+     <p class="muted small">Choose “Needs more information” only when the answer depends on details we have not been given.</p>
+     <p class="stmt" id="st" tabindex="-1">“${s.s}”</p>
+     <div class="three" role="group" aria-labelledby="st">${Object.keys(M3LAB).map(k=>`<button type="button" class="opt" data-v="${k}"><span class="txt">${M3LAB[k]}</span></button>`).join('')}</div>
+     <div id="fbw" role="status" aria-live="polite"></div></div>`),true);
+    $('#st').focus({preventScroll:true});
+    $$('.opt',view).forEach(b=>b.addEventListener('click',()=>{
+      const v=b.dataset.v, ok=v===s.a; if(ok)pts++;
+      $$('.opt',view).forEach(x=>{x.disabled=true; if(x.dataset.v===s.a){x.classList.add('right'); x.querySelector('.txt').insertAdjacentHTML('beforeend','<span class="tag">✔ Correct answer</span>');} else if(x===b){x.classList.add('wrong'); x.querySelector('.txt').insertAdjacentHTML('beforeend','<span class="tag">✖ Your answer</span>');}});
+      const miss=s.a==='nmi'?`<p><strong>What is missing:</strong> ${s.missing}</p>`:'';
+      $('#fbw').innerHTML=`<div class="fb ${ok?'':'no'}"><h3>${ok?'✔ Correct':'✖ Not quite'}: this statement is “${M3LAB[s.a].toLowerCase()}”</h3>${s.a==='nmi'?'':`<p>${s.why}</p>`}${miss}</div>
+        <button type="button" class="btn primary" id="nx">${i<M3S.length-1?'Next statement →':'Finish →'}</button>`;
+      const nx=$('#nx'); nx.focus();
+      nx.addEventListener('click',()=>{ i++; if(i<M3S.length) draw(); else completeScreen(m,pts,MAXP.m3,finishMission('m3',pts),`<p>A ${W('stereotype')} is a generalised assumption about a group. Assumptions can lead to ${W('prejudice')} and, if acted on, ${W('discrimination')}.</p>`); });
+    }));
+  };
+  draw();
+}
+
+/* =====================================================================
+   MISSION 4
+   ===================================================================== */
+function viewM4(){
+  cur='m4'; const m=MISSIONS[3];
+  const best=SCEN.map(()=>-1), skipped=SCEN.map(()=>false); let si=0;
+  const intro=()=>{
+    show(shell(m,'Four fictional school situations',0,`
+     <div class="card"><p>You will see four <strong>fictional</strong> situations. For each one, choose what you would do, see what happens, and reconsider if you like. There is no penalty.</p>
+     <p>You can <strong>skip any scenario</strong> and still read the key advice. If anything here worries you, talk to a trusted adult. Your safety comes first: you never have to confront anyone if it feels unsafe.</p></div>
+     <button type="button" class="btn primary" id="st">Start the scenarios →</button>`));
+    $('#st').addEventListener('click',()=>scene());
+  };
+  const scene=(tried)=>{
+    const sc=SCEN[si]; tried=tried||{};
+    if(!scene.order||scene.si!==si){ scene.order=shuffle([0,1,2]); scene.si=si; }
+    const ord=scene.order;
+    show(shell(m,`Scenario ${si+1} of ${SCEN.length}: ${sc.title}`,Math.round(si/SCEN.length*100),`
+     <div class="card">${sc.setup}<h2 id="qh">${sc.q}</h2>
+     <div class="opts" role="group" aria-labelledby="qh">${ord.map((oi,k)=>{const o=sc.opts[oi],t=tried[oi]; return `<button type="button" class="opt ${t?'tried':''}" data-o="${oi}" ${t?'disabled':''}><span class="k" aria-hidden="true">${L(k)}</span><span class="txt">${o.t}${t?`<span class="tag">${RICON[o.r]} Already explored: ${RLAB[o.r]}</span>`:''}</span></button>`;}).join('')}</div>
+     <div id="fbw" role="status" aria-live="polite"></div>
+     <div class="row" id="skiprow"><button type="button" class="btn ghost sm" id="skip">Skip this scenario</button></div></div>`));
+    $$('.opt').forEach(b=>b.addEventListener('click',()=>choose(+b.dataset.o,tried)));
+    $('#skip').addEventListener('click',()=>{
+      skipped[si]=true;
+      $$('.opt').forEach(x=>x.disabled=true); $('#skiprow').remove();
+      $('#fbw').innerHTML=`<div class="fb mid"><h3>Scenario skipped</h3><p><strong>Key advice:</strong> ${sc.key}</p><p><strong>Trusted adults:</strong> ${sc.adult}</p></div><button type="button" class="btn primary" id="nx">${si<SCEN.length-1?'Next scenario →':'Finish scenarios →'}</button>`;
+      const nx=$('#nx'); nx.focus(); nx.addEventListener('click',next);
+    });
+  };
+  const choose=(oi,tried)=>{
+    const sc=SCEN[si], o=sc.opts[oi]; tried[oi]=true; best[si]=Math.max(best[si],RPTS[o.r]);
+    $$('.opt').forEach(x=>{x.disabled=true; if(+x.dataset.o===oi){x.classList.add(o.r==='best'?'right':(o.r==='poor'?'wrong':'sel')); x.querySelector('.txt').insertAdjacentHTML('beforeend','<span class="tag">You chose this</span>');}});
+    $('#skiprow').remove();
+    const remaining=Object.keys(tried).length<3;
+    $('#fbw').innerHTML=`<div class="fb ${o.r==='best'?'':(o.r==='part'?'mid':'no')}"><h3>${RICON[o.r]} ${RLAB[o.r]}</h3><p>${o.fb}</p><p><strong>What happens next:</strong> ${o.next}</p></div>
+      <div class="notice"><strong>Trusted adults:</strong> ${sc.adult}</div>
+      <div class="row">${remaining&&o.r!=='best'?`<button type="button" class="btn second" id="re">↺ Reconsider: try a different response</button>`:''}<button type="button" class="btn primary" id="nx">${si<SCEN.length-1?'Continue to next scenario →':'Finish scenarios →'}</button></div>`;
+    const re=$('#re'); if(re) re.addEventListener('click',()=>scene(tried));
+    const nx=$('#nx'); (re||nx).focus(); nx.addEventListener('click',next);
+  };
+  const next=()=>{ si++; if(si<SCEN.length) scene(); else summary(); };
+  const summary=()=>{
+    const pts=best.reduce((a,b,i)=>a+(skipped[i]?0:Math.max(b,0)),0);
+    const rows=SCEN.map((s,i)=>`<li><strong>${s.title}:</strong> ${skipped[i]?'skipped (key advice shown)':(best[i]===2?'you found the most constructive response':'you explored the responses')}</li>`).join('');
+    const nb=finishMission('m4',pts);
+    completeScreen(m,pts,MAXP.m4,nb,`<ul>${rows}</ul><p><strong>Remember the five habits of respect:</strong> listen; don’t assume; respect privacy; use considerate language; seek help when needed.</p>`);
+  };
+  intro();
+}
+
+/* =====================================================================
+   MISSION 5
+   ===================================================================== */
+let A5=null;
+function newAttempt(){
+  A5={i:0,ans:Q5.map(()=>null),order:Q5.map(q=>shuffle([{t:q.a,ok:true},...q.d.map(t=>({t,ok:false}))]))};
+}
+function viewM5(){
+  cur='m5'; const m=MISSIONS[4];
+  show(shell(m,'Twelve questions: knowledge, application, and reasoning',0,`
+   <div class="card"><p>This is the final assessment. You will get feedback after you submit all 12 answers. You can <strong>retry as many times as you like with no penalty</strong>, and your best score is kept.</p>
+   <ul><li>4 knowledge questions</li><li>4 application questions</li><li>4 reasoning and evaluation questions</li></ul></div>
+   <button type="button" class="btn primary" id="st">Start the Final Challenge →</button>`));
+  $('#st').addEventListener('click',()=>{newAttempt(); q5();});
+}
+function q5(){
+  const m=MISSIONS[4], i=A5.i, q=Q5[i], opts=A5.order[i], answered=A5.ans.filter(a=>a!==null).length;
+  show(shell(m,`Question ${i+1} of ${Q5.length}`,Math.round(answered/Q5.length*100),`
+   <div class="card"><div class="qmeta"><span class="chip">${CATS[q.c]}</span><span class="chip">${q.f}</span></div>
+   <fieldset style="border:0;padding:0;margin:0"><legend><h2 id="q5h" tabindex="-1" style="margin-bottom:.4em">${q.q}</h2></legend>
+   <div class="opts">${opts.map((o,k)=>`<label class="opt ${A5.ans[i]===k?'sel':''}"><input type="radio" name="o" value="${k}" ${A5.ans[i]===k?'checked':''}><span class="k" aria-hidden="true">${L(k)}</span><span class="txt">${o.t}</span></label>`).join('')}</div></fieldset>
+   <nav class="row" aria-label="Question navigation">
+     <button type="button" class="btn ghost" id="pv" ${i===0?'disabled':''}>← Previous</button>
+     ${i<Q5.length-1?`<button type="button" class="btn primary" id="nx">Next →</button>`:`<button type="button" class="btn second" id="sub" ${answered<Q5.length?'disabled':''}>Submit my answers</button>`}
+     <span class="muted" id="ans">${answered} of ${Q5.length} answered</span></nav>
+   <div class="row" style="margin-top:14px" role="group" aria-label="Jump to question">${Q5.map((_,k)=>`<button type="button" class="btn ghost sm" data-j="${k}" aria-label="Question ${k+1}${A5.ans[k]!==null?' (answered)':' (not answered)'}" ${k===i?'aria-current="true"':''} style="min-width:44px">${k+1}${A5.ans[k]!==null?'✓':''}</button>`).join('')}</div></div>`),true);
+  $('#q5h').focus({preventScroll:true});
+  $$('input[name=o]',view).forEach(r=>r.addEventListener('change',()=>{
+    A5.ans[i]=+r.value; $$('.opt',view).forEach(l=>l.classList.remove('sel')); r.closest('.opt').classList.add('sel');
+    const a=A5.ans.filter(x=>x!==null).length; $('#ans').textContent=`${a} of ${Q5.length} answered`;
+    const s=$('#sub'); if(s) s.disabled=a<Q5.length;
+    $$('[data-j]',view).forEach(b=>{const k=+b.dataset.j; b.textContent=(k+1)+(A5.ans[k]!==null?'✓':'');});
+  }));
+  $('#pv').addEventListener('click',()=>{A5.i--; q5();});
+  const nx=$('#nx'); if(nx) nx.addEventListener('click',()=>{A5.i++; q5();});
+  const sub=$('#sub'); if(sub) sub.addEventListener('click',submit5);
+  $$('[data-j]',view).forEach(b=>b.addEventListener('click',()=>{A5.i=+b.dataset.j; q5();}));
+}
+function submit5(){
+  const m=MISSIONS[4];
+  const cats={K:0,A:0,R:0}; let score=0;
+  const items=Q5.map((q,i)=>{const ch=A5.order[i][A5.ans[i]]; const ok=ch.ok; if(ok){score++; cats[q.c]++;} return {q,ok,chosen:ch.t};});
+  const pct=Math.round(score/Q5.length*100), lv=levelFor(pct);
+  // keep best attempt
+  S.pts.m5=Math.max(S.pts.m5||0,score); S.done.m5=true;
+  if(!S.final||pct>=S.final.pct) S.final={score,total:Q5.length,pct,level:lv.name,date:todayStr(),cats};
+  let nb=false; if(pct>=70) nb=award('m5');
+  save();
+  const best=S.final;
+  show(`<div class="crumbs"><span class="chip">Mission 5 of 5</span></div><h1>Final Challenge results</h1>${bar(100)}
+   <div class="card"><h2>${score} out of ${Q5.length} · ${pct}%</h2>
+    <p><strong>Achievement level: ${lv.name}</strong></p><p>${lv.msg}</p>
+    <ul>${Object.keys(CATS).map(k=>`<li>${CATS[k]}: ${cats[k]} out of 4</li>`).join('')}</ul>
+    <p class="muted">Your best score so far: ${best.score} out of ${best.total} (${best.pct}%).</p>
+    ${pct>=70?`<div class="badges"><div class="badge on ${nb?'pop':''}"><div class="bi">${svg(m)}</div><b>${m.badge}</b><span>✔ Badge earned</span></div></div>`:`<div class="notice">The <strong>${m.badge}</strong> badge is unlocked with a score of 70% or more. You can try again whenever you like. Your best score is kept.</div>`}
+    <div class="row"><button type="button" class="btn primary" data-go="done">See my completion screen →</button><button type="button" class="btn second" id="retry">Try again (no penalty)</button><button type="button" class="btn ghost" data-act="home">Back to dashboard</button></div></div>
+   <h2>Review your answers</h2>
+   ${items.map((it,i)=>`<div class="fb ${it.ok?'':'no'}"><p class="muted small" style="margin:0">Question ${i+1} · ${CATS[it.q.c]} · ${it.q.f}</p><h3>${it.ok?'✔ Correct':'✖ Not quite'}: ${it.q.q}</h3>
+     <p><strong>Your answer:</strong> ${it.chosen}</p>${it.ok?'':`<p><strong>Correct answer:</strong> ${it.q.a}</p>`}<p>${it.q.why}</p></div>`).join('')}`);
+  $('#retry').addEventListener('click',()=>{newAttempt(); q5();});
+}
+
+/* =====================================================================
+   COMPLETION + CERTIFICATE + CSV
+   ===================================================================== */
+function feedbackStatement(){
+  const f=S.final; if(!f) return '';
+  const lv=levelFor(f.pct); let s=lv.msg;
+  const c=f.cats||{}; const keys=['K','A','R'].filter(k=>typeof c[k]==='number');
+  if(keys.length){
+    const mx=Math.max(...keys.map(k=>c[k])), mn=Math.min(...keys.map(k=>c[k]));
+    if(mx!==mn){
+      const hi=keys.filter(k=>c[k]===mx).map(k=>CATS[k].toLowerCase()), lo=keys.filter(k=>c[k]===mn).map(k=>CATS[k].toLowerCase());
+      s+=` Your strongest area was ${hi.join(' and ')}. ${mn<4?`A good area to revisit is ${lo.join(' and ')}.`:''}`;
+    }else if(mx===4) s+=' You answered every question in each area correctly.';
+  }
+  return s;
+}
+function certHTML(){
+  const f=S.final||{score:0,total:12,pct:0,level:''}; const earned=MISSIONS.filter(m=>S.badges[m.id]);
+  const date=fmtDate(f.date);
+  return `<div class="cert"><p class="k">Year 10 PSHE · Relationships and Sex Education</p><h2>Identity &amp; Respect Challenge</h2><p class="t">Certificate of completion</p>
+   <p>Name: <span class="blank"></span></p>
+   <p>Date: ${date?`<strong>${date}</strong>`:'<span class="blank" style="min-width:160px"></span>'}</p>
+   <p>Missions completed: <strong>${doneCount()} of 5</strong></p>
+   <p>Final assessment: <strong>${f.score} out of ${f.total} (${f.pct}%)</strong></p>
+   <p>Achievement level: <strong>${f.level}</strong></p>
+   <p>Badges earned:</p><ul>${earned.length?earned.map(m=>`<li>${m.badge}</li>`).join(''):'<li>None yet</li>'}</ul>
+   <p class="fine">This certificate records completion of an online learning activity about identity, respect and responsible decision-making. It contains no personal information unless you write your name on it.</p></div>`;
+}
+function csvText(){
+  const f=S.final||{score:'',total:12,pct:'',level:'',date:''};
+  const head=['Mission 1 complete','Mission 2 complete','Mission 3 complete','Mission 4 complete','Mission 5 complete','Final score','Out of','Percentage','Achievement level','Date completed'];
+  const row=[...['m1','m2','m3','m4','m5'].map(k=>S.done[k]?'Yes':'No'),f.score,f.total,f.pct===''?'':f.pct+'%',f.level,f.date||''];
+  const q=v=>'"'+String(v).replace(/"/g,'""')+'"';
+  return head.map(q).join(',')+'\r\n'+row.map(q).join(',')+'\r\n';
+}
+function downloadCSV(){
+  const txt=csvText();
+  try{
+    const blob=new Blob([txt],{type:'text/csv;charset=utf-8'});
+    const url=URL.createObjectURL(blob); const a=document.createElement('a');
+    a.href=url; a.download='identity-respect-results.csv'; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    toast('Results file downloaded');
+  }catch(e){ toast('Download not available here. Use the text box below instead.'); }
+  const t=$('#csvbox'); if(t){ t.hidden=false; t.value=txt; }
+}
+function viewDone(){
+  if(!allDone()){ toast('Finish all five missions to see your completion screen.'); return viewHome(); }
+  cur='done'; const f=S.final;
+  show(`<div class="crumbs"><span class="chip">All missions complete</span></div>
+   <h1>IDENTITY &amp; RESPECT CHALLENGE COMPLETED</h1>${bar(100)}
+   <div class="stats">
+     <div class="stat"><b>${doneCount()} / 5</b><span>Missions completed</span></div>
+     <div class="stat"><b>${f.score} / ${f.total}</b><span>Final assessment score</span></div>
+     <div class="stat"><b>${f.pct}%</b><span>Percentage achieved</span></div>
+     <div class="stat"><b>${badgeCount()} / 5</b><span>Badges earned</span></div></div>
+   <div class="card"><h2>${f.level}</h2><p>${feedbackStatement()}</p>
+     <div class="badges">${MISSIONS.map(m=>`<div class="badge ${S.badges[m.id]?'on':''}"><div class="bi">${svg(m)}</div><b>${m.badge}</b><span>${S.badges[m.id]?'✔ Earned':'🔒 Not yet earned'}</span></div>`).join('')}</div></div>
+   <h2>Your certificate</h2>${certHTML()}
+   <div class="row"><button type="button" class="btn primary" id="pr">🖨 Print / Save as PDF</button><button type="button" class="btn second" id="rt">Retake the Final Challenge</button><button type="button" class="btn ghost" data-act="home">Back to dashboard</button><button type="button" class="btn ghost" id="rs">Restart everything</button></div>
+   <p class="muted small" style="margin-top:10px">To save as PDF, choose “Save as PDF” as the printer in the print window. You can write your name on the certificate by hand.</p>
+   <details style="margin-top:18px"><summary>Optional: results file for your teacher</summary>
+    <p>If your teacher asks, you can download a small file that contains only your mission completion, final score, percentage and date. It has no name or personal information. This page cannot send it automatically, so you would upload it yourself in Microsoft Teams.</p>
+    <div class="row"><button type="button" class="btn ghost" id="dl">Download results (CSV)</button></div>
+    <p class="muted small">If nothing downloads, copy the text below instead.</p><textarea class="csv" id="csvbox" readonly aria-label="Results text" hidden></textarea></details>`);
+  $('#pr').addEventListener('click',printCert);
+  $('#rt').addEventListener('click',()=>go('m5'));
+  $('#rs').addEventListener('click',confirmReset);
+  $('#dl').addEventListener('click',downloadCSV);
+}
+function printCert(){
+  $('#printCert').innerHTML=certHTML();
+  try{ window.print(); }catch(e){ toast('Printing is not available here. Try pressing Ctrl+P.'); }
+}
+
+/* =====================================================================
+   DIALOGS: word help, glossary, support, reset, teacher
+   ===================================================================== */
+function wordHTML(k){const w=WORDS[k]; return `<h3>${w.word}</h3><p class="syl" aria-label="Syllables: ${w.syl.replace(/-/g,' ')}">${w.syl}</p><p>${w.mean}</p>`;}
+function openWord(k){ openDlg('Word help',wordHTML(k)); }
+function openGloss(){
+  openDlg('Word help: technical words',`<p>Say each word one part at a time.</p>${Object.keys(WORDS).sort().map(k=>`<div class="card soft">${wordHTML(k)}</div>`).join('')}`);
+}
+function openSupport(){
+  openDlg('Need support?',`<p>If anything in this activity worries you, or something is happening to you or someone you know, <strong>speak to a trusted adult</strong>. This could be your form tutor, the safeguarding lead or any member of staff. Staff are there to help, and they must pass on concerns about someone’s safety.</p>
+   ${SCHOOL_SUPPORT?`<div class="notice teal">${SCHOOL_SUPPORT}</div>`:''}
+   <ul><li><strong>Childline:</strong> 0800 1111 (free, confidential)</li><li><strong>Meic</strong> (helpline for young people in Wales): 080 880 23456 (free)</li></ul>
+   <p class="muted">You never have to share anything about yourself in this activity.</p>`);
+}
+function confirmReset(){
+  openDlg('Reset my progress?',`<p>This clears your missions, score, badges and results on this device, and you will start again from the beginning. Your display settings stay the same.</p>
+   <div class="row"><button type="button" class="btn primary" id="yes">Yes, reset everything</button><button type="button" class="btn ghost" data-close>No, keep my progress</button></div>`);
+  $('#yes').addEventListener('click',()=>{
+    const keep=S.settings; S=defState(); S.settings=keep; save(); closeDlg(); toast('Progress reset'); viewHome();
+  });
+}
+function openTeacher(){
+  const key=(arr,fn)=>arr.map(fn).join('');
+  const qk=(q,i)=>`<p><strong>${i+1}. ${q.q}</strong><br>Correct: ${q.a}<br><span class="muted">${q.why}</span></p>`;
+  openDlg('Teacher information',`
+  <p class="muted">This panel is for staff. Pupils can open it, so you may wish to close it before projecting the screen.</p>
+  <details open><summary>Overview, objectives and timing</summary>
+   <p><strong>Topic:</strong> Sexuality, Identity and Respect · Year 10 PSHE/RSE · North Wales. Designed to complement Lesson 9 and uses the same terminology and scenarios. Estimated time: 20–25 minutes, self-paced.</p>
+   <p><strong>Learning objectives.</strong> Pupils can:</p>
+   <ol><li>Explain what identity means and recognise that people have multiple aspects to their identity.</li><li>Distinguish between sexual orientation, gender identity and gender expression.</li><li>Understand key terms: heterosexual, gay, lesbian, bisexual, asexual, transgender, non-binary.</li><li>Identify stereotypes, prejudice and discrimination.</li><li>Apply respectful communication, privacy and safeguarding principles to realistic situations.</li></ol>
+   <p><strong>Coverage:</strong> Mission 1 Identity (3–4 min) · Mission 2 Terminology (4–5) · Mission 3 Misconceptions and stereotypes (4) · Mission 4 Scenarios (5–6) · Mission 5 Final assessment (4–5).</p>
+   <p>Pupils are never asked to disclose or label their own identity. Definitions follow the Lesson 9 deck. Please check that content matches your school’s RSE policy and the Curriculum for Wales RSE Code.</p></details>
+  <details><summary>Answer key and explanations</summary>
+   <h3 class="key">Mission 1: knowledge check</h3>${key(M1Q,qk)}
+   <h3 class="key">Mission 2: Activity A (matching)</h3>${key(M2ROUNDS,r=>`<p><strong>${r.title}</strong></p><ul>${r.pairs.map(p=>`<li>${p.t}: ${p.d}</li>`).join('')}</ul>`)}
+   <h3 class="key">Mission 2: Activity B</h3>${key(M2B,qk)}
+   <h3 class="key">Mission 3: statements</h3>${key(M3S,(s,i)=>`<p><strong>${i+1}. “${s.s}”</strong><br>Answer: ${M3LAB[s.a]}<br><span class="muted">${s.a==='nmi'?'Missing information: '+s.missing:s.why}</span></p>`)}
+   <h3 class="key">Mission 4: scenarios</h3>${key(SCEN,(s,i)=>`<p><strong>${i+1}. ${s.title}</strong></p><ul>${s.opts.map(o=>`<li><strong>${RLAB[o.r]}:</strong> ${o.t}<br><span class="muted">${o.fb}</span></li>`).join('')}</ul>`)}
+   <h3 class="key">Mission 5: Final Challenge (answer order is randomised)</h3>${key(Q5,(q,i)=>`<p><strong>${i+1}. [${CATS[q.c]} · ${q.f}] ${q.q}</strong><br>Correct: ${q.a}<br><span class="muted">${q.why}</span></p>`)}
+   <p><strong>Scoring:</strong> Missions 1–3 one point per correct answer. Mission 2 Activity A one point per pair matched on the first try. Mission 4: 2 points for the most constructive response, 1 for a partly helpful one, 0 otherwise (skipped scenarios score 0 but count as complete). Mission 5: 1 point per question. Levels: 0–49% Keep Practising · 50–69% Developing Understanding · 70–84% Respect Champion · 85–100% Identity &amp; Respect Expert. The Identity &amp; Respect Expert badge is awarded at 70% or more. The best Final Challenge score is kept.</p></details>
+  <details><summary>Suggested discussion questions</summary><ol>
+   <li>Why is it difficult to describe a person using only one label?</li>
+   <li>How can we tell the difference between disagreeing with an idea and disrespecting a person?</li>
+   <li>Why can using identity words as insults, even as a “joke”, be harmful?</li>
+   <li>What can a bystander safely do when they see disrespectful behaviour? When is it better to tell a member of staff?</li>
+   <li>When must personal information be kept private, and when should a trusted adult be told?</li>
+   <li>What is one way we can make our school a more respectful environment?</li></ol></details>
+  <details><summary>Safeguarding considerations</summary><ul>
+   <li>Pupils are not asked to share personal information, and all scenarios use fictional third-person characters.</li>
+   <li>Remind pupils of the ground rules: no disclosures required, no speculating about anyone’s identity, everyone may pass.</li>
+   <li>Scenarios can be skipped, and the key advice is still shown.</li>
+   <li>Pupils may respond emotionally to the material. Offer a quiet word or time out, and follow your school’s safeguarding procedures for any disclosure.</li>
+   <li>If a pupil uses discriminatory language in class, address the behaviour calmly and in line with your behaviour and anti-bullying policies.</li>
+   <li>The “Need support?” panel lists Childline and Meic. Add school-specific contacts by editing SCHOOL_SUPPORT at the top of the script in this file.</li></ul></details>
+  <details><summary>Using this file and optional results</summary><ul>
+   <li>This is one HTML file that works offline in Edge and Chrome. Pupils should download it from Teams and open it in their browser. A preview inside Teams or OneNote may not run it.</li>
+   <li>Progress is saved with localStorage on each pupil’s own device and browser. If saving is blocked, the activity still works but progress is lost on refresh.</li>
+   <li>Offline HTML cannot send results to you automatically. On the completion screen pupils can <strong>optionally</strong> download a CSV (mission completion, score, percentage, level, date) and upload it to Teams. It contains no names, answers to personal questions or identifiers.</li></ul></details>`);
+}
+
+/* =====================================================================
+   NAVIGATION + SETTINGS
+   ===================================================================== */
+function go(id){
+  const map={home:viewHome,m1:viewM1,m2:viewM2,m3:viewM3,m4:viewM4,m5:viewM5,done:viewDone};
+  if(isLocked(id)){ toast('Finish Missions 1–4 to unlock the Final Challenge.'); return viewHome(); }
+  (map[id]||viewHome)();
+}
+function applySettings(){
+  const reduce=S.settings.reduce===null?window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches:S.settings.reduce;
+  document.body.classList.toggle('reading',!!S.settings.reading);
+  document.body.classList.toggle('rm',!!reduce);
+  document.documentElement.setAttribute('data-theme',S.settings.light?'light':'dark');
+  $('#bRead').setAttribute('aria-pressed',String(!!S.settings.reading));
+  $('#bTheme').setAttribute('aria-pressed',String(!!S.settings.light));
+  $('#bMotion').setAttribute('aria-pressed',String(!!reduce));
+}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button,a'); if(!t) return;
+  if(t.dataset.go){ go(t.dataset.go); return; }
+  if(t.dataset.act==='home'){ viewHome(); return; }
+  if(t.dataset.w){ openWord(t.dataset.w); return; }
+  if(t.hasAttribute('data-close')){ closeDlg(); return; }
+});
+$('#dlg').addEventListener('click',e=>{ if(e.target.id==='dlg') closeDlg(); });
+$('#bHome').addEventListener('click',viewHome);
+$('#bGloss').addEventListener('click',openGloss);
+$('#bHelp').addEventListener('click',openSupport);
+$('#bTeacher').addEventListener('click',openTeacher);
+$('#bReset').addEventListener('click',confirmReset);
+$('#bRead').addEventListener('click',()=>{S.settings.reading=!S.settings.reading; save(); applySettings();});
+$('#bTheme').addEventListener('click',()=>{S.settings.light=!S.settings.light; save(); applySettings();});
+$('#bMotion').addEventListener('click',()=>{const now=document.body.classList.contains('rm'); S.settings.reduce=!now; save(); applySettings();});
+window.addEventListener('afterprint',()=>{$('#printCert').innerHTML='';});
+
+/* TEST_HOOK */
+
+testStorage(); updateStoreNote(); applySettings(); viewHome();
+})();
+</script>
+</body>
+</html>
